@@ -11,34 +11,40 @@ struct RecipeListView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Hello Alex")
+                Text("Hello,  Alex")
                     .font(.largeTitle)
+                Spacer()
                 Image("ProfileImages")
                     .resizable()
                     .scaledToFit()
                     .clipShape(Circle())
-                    .frame(width: 120, height: 120)
+                    .frame(width: 100, height: 100)
                 
             }
-            VStack{
+            VStack(alignment: .leading){
                 Text("Recepies:")
                     .font(.largeTitle)
-                VStack{                VStack{
-                    Text("Spaghettie")
-                    Text("Difficulty: Hard")
+                
+                VStack(alignment: .leading){
+                    VStack(alignment: .leading){
+                    Text("Spaghettie").font(.title2)
+                        Text("Hard").font(.headline)
                     HStack{
-                        Text("Number of ingredientes: 10")
+                        Text("8 ingredientes")
+                        Spacer()
                         Text("Effort: Hight")
-                    }
+                    }.font(.subheadline)
                     
                 }
-                    VStack{
-                        Text("Eggs")
-                        Text("Difficulty: Easy")
+                    Divider()
+                    VStack(alignment: .leading){
+                        Text("Eggs").font(.title2)
+                        Text("Easy").font(.headline)
                         HStack{
-                            Text("Number of ingredientes: 2")
+                            Text("8 ingredientes")
+                            Spacer()
                             Text("Effort: Low")
-                        }
+                        }.font(.subheadline)
                         
                     }
                 }
@@ -46,7 +52,7 @@ struct RecipeListView: View {
                 
             }
             
-        }
+        }.padding(.all, 30)
     }
 }
 
