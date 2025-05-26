@@ -6,12 +6,12 @@
 //
 import SwiftUI
 
-struct ShareRecipe: View {
+struct ShareRecipeView: View {
     var body: some View {
         Text("ShareRecipe")
     }
 }
 
 #Preview {
-    ShareRecipe()
+    ShareRecipeView()
 }
