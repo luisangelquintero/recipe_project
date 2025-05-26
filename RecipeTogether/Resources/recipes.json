@@ -13,7 +13,8 @@
     "difficulty": "Medium",
     "effort": "30 minutes",
     "submittedBy": "user1@example.com",
-    "timestamp": "2025-05-19T12:00:00Z"
+    "timestamp": "2025-05-19T12:00:00Z",
+    "id": 1
   },
   {
     "title": "Avocado Toast",
@@ -28,7 +29,8 @@
     "difficulty": "Easy",
     "effort": "10 minutes",
     "submittedBy": "user2@example.com",
-    "timestamp": "2025-05-18T09:45:00Z"
+    "timestamp": "2025-05-18T09:45:00Z",
+    "id": 2
   },
   {
     "title": "Chicken Tikka Masala",
@@ -45,6 +47,7 @@
     "difficulty": "Hard",
     "effort": "60 minutes",
     "submittedBy": "user3@example.com",
-    "timestamp": "2025-05-17T16:20:00Z"
+    "timestamp": "2025-05-17T16:20:00Z",
+    "id": 3
   }
 ]
