@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Spaghetti Carbonara",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta",
+      "2 large eggs",
+      "50g parmesan cheese",
+      "Salt",
+      "Black pepper"
+    ],
+    "instructions": "Cook spaghetti. Fry pancetta. Mix eggs and cheese. Combine all with pasta off heat.",
+    "difficulty": "Medium",
+    "effort": "30 minutes",
+    "submittedBy": "user1@example.com",
+    "timestamp": "2025-05-19T12:00:00Z"
+  },
+  {
+    "title": "Avocado Toast",
+    "ingredients": [
+      "2 slices of sourdough bread",
+      "1 ripe avocado",
+      "Salt",
+      "Chili flakes",
+      "Olive oil"
+    ],
+    "instructions": "Toast bread. Mash avocado with salt. Spread on toast. Drizzle with olive oil and chili flakes.",
+    "difficulty": "Easy",
+    "effort": "10 minutes",
+    "submittedBy": "user2@example.com",
+    "timestamp": "2025-05-18T09:45:00Z"
+  },
+  {
+    "title": "Chicken Tikka Masala",
+    "ingredients": [
+      "400g chicken breast",
+      "200ml yogurt",
+      "1 onion",
+      "2 cloves garlic",
+      "Garam masala",
+      "Tomato puree",
+      "Cream"
+    ],
+    "instructions": "Marinate chicken in yogurt and spices. Cook onions and garlic, add tomato and cream. Simmer chicken in sauce.",
+    "difficulty": "Hard",
+    "effort": "60 minutes",
+    "submittedBy": "user3@example.com",
+    "timestamp": "2025-05-17T16:20:00Z"
+  }
+]
