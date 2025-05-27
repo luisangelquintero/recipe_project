@@ -7,26 +7,27 @@
 
 import Foundation
 
-var recipes: [Recipes] = load("recipes")
+var recipes: [Recipe] = load("recipes.json")
 
-func load<T: Decodable>(_ fileName: String) -> T {
+func load<T: Decodable>(_ filename: String) -> T {
     let data : Data
     
-    guard let file = Bundle.main.url(forResource: fileName, withExtension: nil) else {
-        fatalError( "File \(fileName).json not found")
+    guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
+    else {
+        fatalError( "File \(filename).json not found")
     }
     
     do {
         data = try Data(contentsOf: file)
     } catch {
-        fatalError( "Unable to load \(fileName).json from main bundle: \n\(error)")
+        fatalError( "Unable to load \(filename).json from main bundle: \n\(error)")
     }
     
-    do{
+    do {
         let decoder = JSONDecoder()
         return try decoder.decode(T.self, from: data)
     } catch {
-        fatalError( "Unable to parse \(fileName) as \(T.self): \n\(error)")
+        fatalError( "Unable to parse \(filename) as \(T.self): \n\(error)")
     }
     
 }
