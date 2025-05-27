@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		53125CB92DD616440005D981 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 53125CB82DD616370005D981 /* .gitignore */; };
+		53125CD32DE5EA6C0005D981 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 53125CD22DE5EA640005D981 /* readme.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,7 @@
 		53125C982DD615E90005D981 /* RecipeTogetherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipeTogetherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53125CA22DD615E90005D981 /* RecipeTogetherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipeTogetherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53125CB82DD616370005D981 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		53125CD22DE5EA640005D981 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,6 +87,7 @@
 				53125C9B2DD615E90005D981 /* RecipeTogetherTests */,
 				53125CA52DD615E90005D981 /* RecipeTogetherUITests */,
 				53125C8C2DD615E70005D981 /* Products */,
+				53125CD22DE5EA640005D981 /* readme.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53125CB92DD616440005D981 /* .gitignore in Resources */,
+				53125CD32DE5EA6C0005D981 /* readme.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
