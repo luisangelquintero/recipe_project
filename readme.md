@@ -38,7 +38,7 @@ Users seeking AI-generated suggestions to improve or simplify recipes.
 ### 🖥️ Frontend (iOS App)
 
 
-** Language **: Swift
+**Language**: Swift
 
 ** Framework **: SwiftUI (for building a modern, reactive UI)
 
