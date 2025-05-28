@@ -7,13 +7,21 @@
 import SwiftUI
 
 struct RecipeRow: View {
-    var recipes: Recipe
+    var recipe: Recipe
     
     var body: some View {
-        Text("Hello, World!")
+        VStack(alignment: .leading){
+            Text(recipe.title).font(.title2)
+            Text(recipe.difficulty).font(.headline)
+            HStack{
+                Text("\(recipe.ingredients.count) Ingredients")
+                Spacer()
+                Text("Effort: \(recipe.effort)")
+            }.font(.subheadline)
+        }
     }
 }
 
 #Preview {
-    RecipeRow(recipes: recipes[0])
+    RecipeRow(recipe: recipes[0]).padding(.all, 30)
 }
