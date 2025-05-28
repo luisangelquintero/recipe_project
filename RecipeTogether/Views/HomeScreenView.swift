@@ -21,35 +21,10 @@ struct HomeScreenView: View {
                     .frame(width: 100, height: 100)
                 
             }
+            Spacer()
             VStack(alignment: .leading){
-                Text("Recepies:")
-                    .font(.largeTitle)
-                
-                VStack(alignment: .leading){
-                    VStack(alignment: .leading){
-                    Text("Spaghettie").font(.title2)
-                        Text("Hard").font(.headline)
-                    HStack{
-                        Text("8 ingredientes")
-                        Spacer()
-                        Text("Effort: Hight")
-                    }.font(.subheadline)
-                    
-                }
-                    Divider()
-                    VStack(alignment: .leading){
-                        Text("Eggs").font(.title2)
-                        Text("Easy").font(.headline)
-                        HStack{
-                            Text("8 ingredientes")
-                            Spacer()
-                            Text("Effort: Low")
-                        }.font(.subheadline)
-                        
-                    }
-                }
-
-                
+                Text("Recepies:").font(.largeTitle)
+                RecipeList()
             }
             
         }.padding(.all, 30)

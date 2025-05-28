@@ -10,7 +10,7 @@ struct RecipeList: View {
     var body: some View {
         List(recipes){ recipe in
             RecipeRow(recipe: recipe)
-        }
+        }.listStyle(PlainListStyle())
 
     }
 }
