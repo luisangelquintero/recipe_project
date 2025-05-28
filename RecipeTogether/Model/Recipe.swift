@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct Recipe: Hashable, Codable {
+struct Recipe: Hashable, Codable, Identifiable {
     var id: Int
     var title: String
     var difficulty: String
