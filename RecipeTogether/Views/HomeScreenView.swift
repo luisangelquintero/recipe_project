@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipeListView: View {
+struct HomeScreenView: View {
     var body: some View {
         VStack{
             HStack{
@@ -57,5 +57,5 @@ struct RecipeListView: View {
 }
 
 #Preview {
-    RecipeListView()
+    HomeScreenView()
 }
