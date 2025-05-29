@@ -7,11 +7,33 @@
 import SwiftUI
 
 struct RecipeDetailView: View {
+    var recipe: Recipe
+    
     var body: some View {
-        Text("Hello, World from RecipeDetailView!")
+        VStack {
+            Text(recipe.title).font(.title)
+            HStack {
+                Text(recipe.effort)
+                
+            }
+            
+            Spacer()
+            VStack(alignment: .leading) {
+                List(recipe.ingredients, id: \.self) {
+                    Text($0)
+                    
+                }.listStyle(PlainListStyle())
+            }
+            VStack{
+                Text(recipe.instructions)
+                Spacer()
+            }
+            
+        }.padding(20)
+        
     }
 }
 
 #Preview {
-    RecipeDetailView()
+    RecipeDetailView(recipe: recipes[0])
 }

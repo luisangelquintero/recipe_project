@@ -12,6 +12,7 @@ struct Recipe: Hashable, Codable, Identifiable {
     var difficulty: String
     var ingredients: [String]
     var effort: String
+    var instructions: String
     
     var numberOfIngredients: Int {
         return ingredients.count
