@@ -9,7 +9,8 @@ import SwiftUI
 
 struct HomeScreenView: View {
     var body: some View {
-        VStack{
+        VStack(spacing: 5){
+            Spacer()
             HStack{
                 Text("Hello,  Alex")
                     .font(.largeTitle)
@@ -21,12 +22,9 @@ struct HomeScreenView: View {
                     .frame(width: 100, height: 100)
                 
             }
-            Spacer()
             VStack(alignment: .leading){
-                Text("Recepies:").font(.largeTitle)
                 RecipeList()
             }
-            
         }.padding(.all, 30)
     }
 }
