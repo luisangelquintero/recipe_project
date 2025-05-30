@@ -18,7 +18,7 @@ struct RecipeList: View {
                 }
                 
             }.listStyle(PlainListStyle())
-            .navigationBarTitle("Recipes:")
+            .navigationBarTitle("Recipes")
             
         } detail: {
             Text("Selected Recipe")
