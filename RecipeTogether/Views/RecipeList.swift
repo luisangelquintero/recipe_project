@@ -8,9 +8,21 @@ import SwiftUI
 
 struct RecipeList: View {
     var body: some View {
-        List(recipes){ recipe in
-            RecipeRow(recipe: recipe)
-        }.listStyle(PlainListStyle())
+        NavigationSplitView {
+            List(recipes){ recipe in
+                NavigationLink{
+                    RecipeDetailView(recipe: recipe)
+                } label: {
+                    RecipeRow(recipe: recipe)
+                }
+                
+            }.listStyle(PlainListStyle())
+            .navigationBarTitle("Recipes:")
+            
+        } detail: {
+            Text("Selected Recipe")
+        }
+        
 
     }
 }
