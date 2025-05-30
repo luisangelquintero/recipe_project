@@ -12,21 +12,32 @@ struct RecipeDetailView: View {
     var body: some View {
         VStack {
             Text(recipe.title).font(.title)
+            Image(recipe.title)
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(15)
+                .containerRelativeFrame(.vertical) { size, axis in
+                    size * 0.35
+                }
             HStack {
-                Text(recipe.effort)
                 
-            }
-            
+                Text("Time: \(recipe.effort)")
+                Spacer()
+                Text("Difficulty: \(recipe.difficulty)")
+                
+            }.padding([.horizontal, .bottom],20).font(.subheadline)
             Spacer()
             VStack(alignment: .leading) {
+                Text("Ingedients:").font(.headline)
                 List(recipe.ingredients, id: \.self) {
                     Text($0)
                     
                 }.listStyle(PlainListStyle())
+                
             }
             VStack{
+                Text("Instructions:").font(.headline)
                 Text(recipe.instructions)
-                Spacer()
             }
             
         }.padding(20)
