@@ -11,10 +11,10 @@
     ],
     "instructions": "Cook spaghetti. Fry pancetta. Mix eggs and cheese. Combine all with pasta off heat.",
     "difficulty": "Medium",
-    "effort": "30 minutes",
+    "effort": 30,
     "submittedBy": "user1@example.com",
     "timestamp": "2025-05-19T12:00:00Z",
-    "id": 1
+    "id": "1"
   },
   {
     "title": "Avocado Toast",
@@ -27,10 +27,10 @@
     ],
     "instructions": "Toast bread. Mash avocado with salt. Spread on toast. Drizzle with olive oil and chili flakes.",
     "difficulty": "Easy",
-    "effort": "10 minutes",
+    "effort": 10,
     "submittedBy": "user2@example.com",
     "timestamp": "2025-05-18T09:45:00Z",
-    "id": 2
+    "id": "2"
   },
   {
     "title": "Chicken Tikka Masala",
@@ -45,10 +45,10 @@
     ],
     "instructions": "Marinate chicken in yogurt and spices. Cook onions and garlic, add tomato and cream. Simmer chicken in sauce.",
     "difficulty": "Hard",
-    "effort": "60 minutes",
+    "effort": 60,
     "submittedBy": "user3@example.com",
     "timestamp": "2025-05-17T16:20:00Z",
-    "id": 3
+    "id": "3"
   },
   {
     "title": "Beef Tacos",
@@ -66,10 +66,10 @@
     ],
     "instructions": "Cook beef with seasoning. Prepare shells. Assemble with toppings.",
     "difficulty": "Easy",
-    "effort": "20 minutes",
+    "effort": 20,
     "submittedBy": "user4@example.com",
     "timestamp": "2025-05-16T13:00:00Z",
-    "id": 4
+    "id": "4"
   },
   {
     "title": "Vegan Buddha Bowl",
@@ -87,10 +87,10 @@
     ],
     "instructions": "Cook quinoa. Arrange all ingredients in a bowl. Top with hummus and dressing.",
     "difficulty": "Medium",
-    "effort": "25 minutes",
+    "effort": 25,
     "submittedBy": "user5@example.com",
     "timestamp": "2025-05-15T14:30:00Z",
-    "id": 5
+    "id": "5"
   },
   {
     "title": "Shrimp Pad Thai",
@@ -108,10 +108,10 @@
     ],
     "instructions": "Soak noodles. Stir-fry shrimp and garlic. Add noodles and sauce. Add egg and bean sprouts. Garnish with peanuts.",
     "difficulty": "Hard",
-    "effort": "40 minutes",
+    "effort": 40,
     "submittedBy": "user6@example.com",
     "timestamp": "2025-05-14T10:15:00Z",
-    "id": 6
+    "id": "6"
   },
   {
     "title": "Greek Salad",
@@ -129,10 +129,10 @@
     ],
     "instructions": "Chop vegetables. Combine in bowl with olives and feta. Dress with oil, vinegar, and seasoning.",
     "difficulty": "Easy",
-    "effort": "15 minutes",
+    "effort": 15,
     "submittedBy": "user7@example.com",
     "timestamp": "2025-05-13T11:40:00Z",
-    "id": 7
+    "id": "7"
   },
   {
     "title": "Pancakes",
@@ -150,10 +150,10 @@
     ],
     "instructions": "Mix ingredients. Pour batter on pan. Flip when bubbles form. Serve with syrup and berries.",
     "difficulty": "Easy",
-    "effort": "20 minutes",
+    "effort": 20,
     "submittedBy": "user8@example.com",
     "timestamp": "2025-05-12T08:50:00Z",
-    "id": 8
+    "id": "8"
   },
   {
     "title": "Stuffed Bell Peppers",
@@ -171,9 +171,9 @@
     ],
     "instructions": "Cook turkey with spices. Mix with rice and sauce. Stuff into peppers. Bake and top with cheese.",
     "difficulty": "Medium",
-    "effort": "35 minutes",
+    "effort": 35,
     "submittedBy": "user9@example.com",
     "timestamp": "2025-05-11T17:25:00Z",
-    "id": 9
+    "id": "9"
   }
 ]

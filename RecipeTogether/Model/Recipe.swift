@@ -7,11 +7,11 @@
 import Foundation
 
 struct Recipe: Hashable, Codable, Identifiable {
-    var id: Int
+    var id: String
     var title: String
     var difficulty: String
     var ingredients: [String]
-    var effort: String
+    var effort: Int
     var instructions: String
     
     var numberOfIngredients: Int {
