@@ -10,7 +10,7 @@ struct Recipe: Hashable, Codable, Identifiable {
     var id: String
     var title: String
     var difficulty: String
-    var ingredients: [String]
+    var ingredients: String
     var effort: Int
     var instructions: String
     
