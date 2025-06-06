@@ -11,7 +11,7 @@ struct HomeScreenView: View {
     
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
    
                 VStack(spacing: 5){
 
@@ -35,7 +35,16 @@ struct HomeScreenView: View {
                     NavigationLink(destination: AddRecipeView()) {
                         Text("Add Recipe")
                     }
-                }.padding(.all, 30)
+                }.toolbar{
+                    Button(action: {}) {
+                        HStack{
+                            Text("Add Recipe")
+                            Image(systemName: "plus")
+                        }
+                        
+                    }.accessibilityLabel("Add Recipe")
+                }
+                .padding(.all, 30)
                 
             }
         
