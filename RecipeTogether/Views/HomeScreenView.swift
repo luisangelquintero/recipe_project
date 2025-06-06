@@ -8,24 +8,37 @@
 import SwiftUI
 
 struct HomeScreenView: View {
+    
     var body: some View {
-        VStack(spacing: 5){
-            Spacer()
-            HStack{
-                Text("Hello,  Alex")
-                    .font(.largeTitle)
-                Spacer()
-                Image("ProfileImages")
-                    .resizable()
-                    .scaledToFit()
-                    .clipShape(Circle())
-                    .frame(width: 100, height: 100)
+        
+        NavigationView {
+   
+                VStack(spacing: 5){
+
+                    Spacer()
+                    HStack{
+                        Text("Hello,  Alex")
+                            .font(.largeTitle)
+                        Spacer()
+                        Image("ProfileImages")
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(Circle())
+                            .frame(width: 100, height: 100)
+                        
+                    }
+                    VStack(alignment: .leading){
+                        RecipeList()
+                    }
+
+                    
+                    NavigationLink(destination: AddRecipeView()) {
+                        Text("Add Recipe")
+                    }
+                }.padding(.all, 30)
                 
             }
-            VStack(alignment: .leading){
-                RecipeList()
-            }
-        }.padding(.all, 30)
+        
     }
 }
 

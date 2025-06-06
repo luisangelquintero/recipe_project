@@ -29,10 +29,7 @@ struct RecipeDetailView: View {
             Spacer()
             VStack(alignment: .leading) {
                 Text("Ingedients:").font(.headline)
-                List(recipe.ingredients, id: \.self) {
-                    Text($0)
-                    
-                }.listStyle(PlainListStyle())
+                Text(recipe.ingredients)
                 
             }
             VStack{
