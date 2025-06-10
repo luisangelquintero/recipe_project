@@ -7,9 +7,16 @@
 
 import SwiftUI
 
+struct Response: Codable {
+    let results: [Recipe]
+}
+
 struct HomeScreenView: View {
+    @State private var recipeList: [Recipe] = []
     
     var body: some View {
+        
+        
         
         NavigationStack {
    
@@ -47,6 +54,28 @@ struct HomeScreenView: View {
                 .padding(.all, 30)
                 
             }
+        .task{
+            await loadData()
+        }
+        
+    }
+    
+    func loadData() async {
+        guard let url = URL(string: "http://localhost:8000/recipes") else {
+            print( "Invalid URL")
+            return
+        }
+        
+        do {
+            let (data, _ ) = try await URLSession.shared.data(from: url)
+            if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data){
+                recipeList = decodedResponse.results
+            }
+        } catch {
+            print("invalid data")
+        }
+        
+        
         
     }
 }
