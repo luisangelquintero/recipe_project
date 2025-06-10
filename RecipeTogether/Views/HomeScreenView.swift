@@ -28,7 +28,7 @@ struct HomeScreenView: View {
                         
                     }
                     VStack(alignment: .leading){
-                        RecipeList()
+                        RecipeList(recipeList: recipes)
                     }
 
                     

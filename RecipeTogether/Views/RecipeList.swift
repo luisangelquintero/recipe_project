@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct RecipeList: View {
+    var recipeList : [Recipe]
     var body: some View {
         NavigationView {
             List(recipes){ recipe in
@@ -26,5 +27,5 @@ struct RecipeList: View {
 }
 
 #Preview {
-    RecipeList()
+    RecipeList(recipeList: recipes)
 }
