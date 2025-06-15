@@ -21,7 +21,7 @@ struct RecipeDetailView: View {
                 }
             HStack {
                 
-                Text("Time: \(recipe.effort)")
+                Text("Time: \(recipe.minutes)")
                 Spacer()
                 Text("Difficulty: \(recipe.difficulty)")
                 

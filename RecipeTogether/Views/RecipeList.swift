@@ -10,7 +10,7 @@ struct RecipeList: View {
     var recipeList : [Recipe]
     var body: some View {
         NavigationView {
-            List(recipes){ recipe in
+            List(recipeList){ recipe in
                 NavigationLink{
                     RecipeDetailView(recipe: recipe)
                 } label: {

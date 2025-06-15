@@ -7,12 +7,8 @@
 
 import SwiftUI
 
-struct Response: Codable {
-    let results: [Recipe]
-}
-
 struct HomeScreenView: View {
-    @State private var recipeList: [Recipe] = []
+    @State private var results = [Recipe]()
     
     var body: some View {
         
@@ -35,7 +31,7 @@ struct HomeScreenView: View {
                         
                     }
                     VStack(alignment: .leading){
-                        RecipeList(recipeList: recipes)
+                        RecipeList(recipeList: results)
                     }
 
                     
@@ -61,15 +57,15 @@ struct HomeScreenView: View {
     }
     
     func loadData() async {
-        guard let url = URL(string: "http://localhost:8000/recipes") else {
+        guard let url = URL(string: "http://127.0.0.1:8000/recipes") else {
             print( "Invalid URL")
             return
         }
         
         do {
             let (data, _ ) = try await URLSession.shared.data(from: url)
-            if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data){
-                recipeList = decodedResponse.results
+            if let decodedResponse = try? JSONDecoder().decode([Recipe].self, from: data){
+                results = decodedResponse
             }
         } catch {
             print("invalid data")

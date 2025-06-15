@@ -14,7 +14,7 @@ struct RecipeRow: View {
             Text(recipe.title).font(.title2)
             Text(recipe.difficulty).font(.headline)
             HStack{
-                Text("Time: \(recipe.effort), minutes")
+                Text("Time: \(recipe.minutes), minutes")
             }.font(.subheadline)
         }
     }
