@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeScreenView: View {
+struct ContentView: View {
     @State private var results = [Recipe]()
     
     var body: some View {
@@ -21,7 +21,7 @@ struct HomeScreenView: View {
                     Spacer()
                     HStack{
                         Text("Hello,  Alex")
-                            .font(.largeTitle)
+                            .font(RecipeFonts.title)
                         Spacer()
                         Image("ProfileImages")
                             .resizable()
@@ -36,12 +36,12 @@ struct HomeScreenView: View {
 
                     
                     NavigationLink(destination: AddRecipeView()) {
-                        Text("Add Recipe")
+                        Text("Add Recipe").font(RecipeFonts.button)
                     }
                 }.toolbar{
                     Button(action: {}) {
                         HStack{
-                            Text("Add Recipe")
+                            Text("Add Recipe").font(RecipeFonts.button)
                             Image(systemName: "plus")
                         }
                         
@@ -77,5 +77,5 @@ struct HomeScreenView: View {
 }
 
 #Preview {
-    HomeScreenView()
+    ContentView()
 }

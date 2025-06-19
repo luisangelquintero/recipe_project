@@ -18,24 +18,26 @@ struct AddRecipeView: View {
     let difficultyOptions: [String] = ["Easy", "Medium", "Hard"]
     
     var body: some View {
+        VStack {
+            Text("Add a new recipe").font(RecipeFonts.title)
         NavigationView {
             Form {
-                Section(header: Text("Recipe Info:")) {
-                    TextField("Title", text: $title)
-                    TextField("Ingredients", text: $ingredients)
+                Section(header: Text("Recipe Info:").font(RecipeFonts.section)) {
+                    TextField("Title", text: $title).font(RecipeFonts.body)
+                    TextField("Ingredients", text: $ingredients).font(RecipeFonts.body)
                     Picker("Difficulty", selection: $difficulty) {
                         ForEach(difficultyOptions, id: \.self) {
-                            Text($0)
+                            Text($0).font(RecipeFonts.body)
                         }
                     }
                 }
                 
-                Section(header: Text("Instructions:")) {
+                Section(header: Text("Instructions:").font(RecipeFonts.section)) {
                     TextEditor(text: $instructions)
                         .frame(minHeight: 150)
                 }
                 
-                Section (header: Text("Estimated time (minutes):")){
+                Section (header: Text("Estimated time (minutes):").font(RecipeFonts.section)){
                     HStack {
                         TextField("time", text: $minutes)
                     }
@@ -50,11 +52,12 @@ struct AddRecipeView: View {
                                 print("❌ Failed to submit recipe: \(error)")
                             }
                         }
-                    }
+                    }.font(RecipeFonts.button)
                 }
             }
         }
         .navigationTitle("Add Recipe")
+        }
     }
     
     func submitRecipe() async throws {
