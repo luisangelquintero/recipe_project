@@ -1,12 +1,10 @@
 [
-  {
-    "title": "Spaghetti Carbonara",
-    "ingredients": "200g spaghetti",
-    "instructions": "Cook spaghetti. Fry pancetta. Mix eggs acheese",
-    "difficulty": "Medium",
-    "effort": 30,
-    "submittedBy": "user1@example.com",
-    "timestamp": "2025-05-19T12:00:00Z",
-    "id": "1"
-  }
+    {
+        "id": "01",
+        "title": "Avocado Toast",
+        "difficulty": "Medium",
+        "ingredients": "TEST INGEDIENTS",
+        "minutes": 2,
+        "instructions": "String"
+    }
 ]
