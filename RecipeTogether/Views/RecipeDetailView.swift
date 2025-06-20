@@ -25,9 +25,9 @@ struct RecipeDetailView: View {
                 Spacer()
                 Text("Difficulty: \(recipe.difficulty)").font(RecipeFonts.body)
                 
-            }.padding([.horizontal, .bottom],20).font(.subheadline)
+            }.padding([.horizontal, .bottom], RecipeSpacing.xs).font(.subheadline)
             Spacer()
-            VStack(alignment: .leading) {
+            VStack {
                 Text("Ingedients:").font(RecipeFonts.section)
                 Text(recipe.ingredients).font(RecipeFonts.body)
                 
@@ -37,7 +37,7 @@ struct RecipeDetailView: View {
                 Text(recipe.instructions).font(RecipeFonts.body)
             }
             
-        }.padding(20)
+        }.padding(RecipeSpacing.md)
         
     }
 }

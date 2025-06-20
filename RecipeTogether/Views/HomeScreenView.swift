@@ -45,7 +45,7 @@ struct ContentView: View {
                         
                     }.accessibilityLabel("Add Recipe")
                 }
-                .padding(.all, 30)
+                .padding(.all, RecipeSpacing.md)
                 
             }
         .task{

@@ -15,7 +15,7 @@ struct RecipeList: View {
                     RecipeDetailView(recipe: recipe)
                 } label: {
                     RecipeRow(recipe: recipe)
-                        .padding(.trailing, 30)
+                        .padding(.trailing, RecipeSpacing.lg)
                 }
                 
             }.listStyle(PlainListStyle())
