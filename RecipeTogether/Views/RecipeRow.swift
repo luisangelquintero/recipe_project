@@ -11,11 +11,11 @@ struct RecipeRow: View {
     
     var body: some View {
         VStack(alignment: .leading){
-            Text(recipe.title).font(.title2)
-            Text(recipe.difficulty).font(.headline)
+            Text(recipe.title).font(RecipeFonts.section)
+            Text(recipe.difficulty).font(RecipeFonts.body)
             HStack{
-                Text("Time: \(recipe.minutes), minutes")
-            }.font(.subheadline)
+                Text("Time: \(recipe.minutes) minutes")
+            }.font(RecipeFonts.caption)
         }
     }
 }

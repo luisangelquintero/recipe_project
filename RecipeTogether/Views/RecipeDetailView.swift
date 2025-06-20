@@ -11,7 +11,7 @@ struct RecipeDetailView: View {
     
     var body: some View {
         VStack {
-            Text(recipe.title).font(.title)
+            Text(recipe.title).font(RecipeFonts.title)
             Image(recipe.title)
                 .resizable()
                 .scaledToFit()
@@ -21,20 +21,20 @@ struct RecipeDetailView: View {
                 }
             HStack {
                 
-                Text("Time: \(recipe.minutes)")
+                Text("Time: \(recipe.minutes)").font(RecipeFonts.body)
                 Spacer()
-                Text("Difficulty: \(recipe.difficulty)")
+                Text("Difficulty: \(recipe.difficulty)").font(RecipeFonts.body)
                 
             }.padding([.horizontal, .bottom],20).font(.subheadline)
             Spacer()
             VStack(alignment: .leading) {
-                Text("Ingedients:").font(.headline)
-                Text(recipe.ingredients)
+                Text("Ingedients:").font(RecipeFonts.section)
+                Text(recipe.ingredients).font(RecipeFonts.body)
                 
             }
             VStack{
-                Text("Instructions:").font(.headline)
-                Text(recipe.instructions)
+                Text("Instructions:").font(RecipeFonts.section)
+                Text(recipe.instructions).font(RecipeFonts.body)
             }
             
         }.padding(20)
