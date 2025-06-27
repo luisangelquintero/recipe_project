@@ -16,6 +16,10 @@ struct AddRecipeView: View {
     @State private var difficulty = ""
     @State private var minutes = ""
     
+    @State private var selectedPhoto: PhotosPickerItem? = nil
+    @State private var selectedImage: UIImage? = nil
+    @State private var uploadedImageURL: String? = nil
+    
     let difficultyOptions: [String] = ["Easy", "Medium", "Hard"]
     
     var body: some View {
@@ -43,6 +47,27 @@ struct AddRecipeView: View {
                         TextField("time", text: $minutes)
                     }
                 }
+                Section{
+                    PhotosPicker(selection: $selectedPhoto, matching: .images) {
+                        Label("Select Image", systemImage: "photo")
+                    }
+                }.onChange(of: selectedPhoto) { oldValue, newValue in
+                    guard let newItem = newValue else { return }
+                    Task {
+                        if let data = try? await newItem.loadTransferable(type: Data.self),
+                            let uiImage = UIImage(data: data){
+                            selectedImage = uiImage
+                            do {
+                                uploadedImageURL = try await uploadImage(uiImage)
+                                print("✅ Uploaded to: \(uploadedImageURL ?? "")")
+                            } catch {
+                                print("❌ Upload failed: \(error)")
+                            }
+                        }
+                    }
+                    
+                }
+
                 
                 Section {
                     Button("Submit Recipe") {
@@ -103,8 +128,8 @@ struct AddRecipeView: View {
         } else {
             throw URLError(.cannotParseResponse)
         }
-        
     }
+    
     func submitRecipe() async throws {
         guard let url = URL(string: "http://localhost:8000/recipes") else {
             print("Invalid URL")
@@ -118,7 +143,7 @@ struct AddRecipeView: View {
             "ingredients": ingredients,
             "minutes": Int(minutes) ?? 0,
             "instructions": instructions,
-            "imagePath": "",
+            "imagePath": uploadedImageURL ?? "",
             "timestamp": ISO8601DateFormatter().string(from: Date())
         ]
         
