@@ -22,6 +22,12 @@ struct AddRecipeView: View {
     
     let difficultyOptions: [String] = ["Easy", "Medium", "Hard"]
     
+    var disableForm: Bool {
+        let fieldsValidation = title.count < 5 || ingredients.count < 10 || instructions.count < 15 || difficulty.isEmpty
+        let timeValidation = minutes.isEmpty || Int(minutes) == nil        
+        return fieldsValidation || timeValidation
+    }
+    
     var body: some View {
         VStack {
             Text("Add a new recipe").font(RecipeFonts.title)
@@ -79,7 +85,7 @@ struct AddRecipeView: View {
                             }
                         }
                     }.font(RecipeFonts.button)
-                }
+                }.disabled(disableForm)
             }
         }
         .navigationTitle("Add Recipe")
