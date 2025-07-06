@@ -16,10 +16,11 @@ struct RecipeList: View {
                 } label: {
                     RecipeRow(recipe: recipe)
                         .padding(.trailing, RecipeSpacing.lg)
-                }
+                }.listRowBackground(ThemeColors.card)
                 
             }.listStyle(PlainListStyle())
-            .navigationBarTitle("Recipes")
+                .navigationBarTitle(Text("Recipes"))
+            .background(ThemeColors.background)
             
         }
 

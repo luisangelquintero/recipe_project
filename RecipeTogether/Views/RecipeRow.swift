@@ -12,10 +12,11 @@ struct RecipeRow: View {
     var body: some View {
         VStack(alignment: .leading){
             Text(recipe.title).font(RecipeFonts.section)
-            Text(recipe.difficulty).font(RecipeFonts.body)
+                .foregroundStyle(ThemeColors.textPrimary)
+            Text(recipe.difficulty).font(RecipeFonts.body).foregroundStyle(ThemeColors.TextSecondary)
             HStack{
                 Text("Time: \(recipe.minutes) minutes")
-            }.font(RecipeFonts.caption)
+            }.font(RecipeFonts.caption).foregroundStyle(ThemeColors.TextSecondary)
         }
     }
 }
