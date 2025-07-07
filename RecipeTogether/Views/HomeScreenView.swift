@@ -11,47 +11,46 @@ struct ContentView: View {
     @State private var results = [Recipe]()
     
     var body: some View {
-        
-        NavigationStack {
-   
-                VStack(spacing: 5){
-
-                    Spacer()
-                    HStack{
-                        Text("Hello,  Alex")
-                            .font(RecipeFonts.title)
-                        Spacer()
-                        Image("ProfileImages")
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(Circle())
-                            .frame(width: 100, height: 100)
-                        
-                    }
-                    VStack(alignment: .leading){
-                        RecipeList(recipeList: results)
-                    }
-
-                    
-                    NavigationLink(destination: AddRecipeView()) {
-                        Text("Add Recipe").font(RecipeFonts.button)
-                    }
-                }.toolbar{
-                    Button(action: {}) {
+            
+            NavigationStack {
+                ZStack{
+                    ThemeColors.background
+                        .ignoresSafeArea()
+                    VStack(spacing: 5){
+                        Divider()
                         HStack{
+                            Text("Hello,  Alex")
+                                .foregroundColor(ThemeColors.textPrimary)
+                                .font(RecipeFonts.title)
+                            Spacer()
+                            Image("ProfileImages")
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(Circle())
+                                .frame(width: 100, height: 100)
+                        }
+                        Divider()
+                        VStack(alignment: .leading){
+                            RecipeList(recipeList: results)
+                        }
+                    }
+                
+                .toolbar {
+                    Button(action: {}) {
+                        HStack {
                             Text("Add Recipe").font(RecipeFonts.button)
                             Image(systemName: "plus")
                         }
-                        
-                    }.accessibilityLabel("Add Recipe")
+                    }
+                    .foregroundColor(ThemeColors.primary)
+                    .accessibilityLabel("Add Recipe")
                 }
                 .padding(.all, RecipeSpacing.md)
-                
+                }
             }
-        .task{
+        .task {
             await loadData()
         }
-        
     }
     
     func loadData() async {
@@ -75,5 +74,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView().background(ThemeColors.difficultyHard)
 }
