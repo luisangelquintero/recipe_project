@@ -29,67 +29,83 @@ struct AddRecipeView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("Add a new recipe").font(RecipeFonts.title)
-        NavigationView {
-            Form {
-                Section(header: Text("Recipe Info:").font(RecipeFonts.section)) {
-                    TextField("Title", text: $title).font(RecipeFonts.body)
-                    TextField("Ingredients", text: $ingredients).font(RecipeFonts.body)
-                    Picker("Difficulty", selection: $difficulty) {
-                        ForEach(difficultyOptions, id: \.self) {
-                            Text($0).font(RecipeFonts.body)
-                        }
-                    }
-                }
+
+            NavigationStack {
                 
-                Section(header: Text("Instructions:").font(RecipeFonts.section)) {
-                    TextEditor(text: $instructions)
-                        .frame(minHeight: 150)
-                }
-                
-                Section (header: Text("Estimated time (minutes):").font(RecipeFonts.section)){
-                    HStack {
-                        TextField("time", text: $minutes)
-                    }
-                }
-                Section{
-                    PhotosPicker(selection: $selectedPhoto, matching: .images) {
-                        Label("Select Image", systemImage: "photo")
-                    }
-                }.onChange(of: selectedPhoto) { oldValue, newValue in
-                    guard let newItem = newValue else { return }
-                    Task {
-                        if let data = try? await newItem.loadTransferable(type: Data.self),
-                            let uiImage = UIImage(data: data){
-                            selectedImage = uiImage
-                            do {
-                                uploadedImageURL = try await uploadImage(uiImage)
-                                print("✅ Uploaded to: \(uploadedImageURL ?? "")")
-                            } catch {
-                                print("❌ Upload failed: \(error)")
+                ZStack {
+                    ThemeColors.background.ignoresSafeArea()
+                    
+                    VStack {
+                        Text("Add a new recipe")
+                            .font(RecipeFonts.title)
+                            .foregroundColor(ThemeColors.textPrimary)
+                Form {
+                    
+                    Section(header: Text("Recipe Info:").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)) {
+                        
+                        TextField("Title", text: $title)
+                            .font(RecipeFonts.body)
+                        
+                        TextField("Ingredients", text: $ingredients).font(RecipeFonts.body)
+                        
+                        Picker("Difficulty", selection: $difficulty) {
+                            ForEach(difficultyOptions, id: \.self) {
+                                Text($0).font(RecipeFonts.body)
                             }
                         }
+                    }.listRowBackground(ThemeColors.background)
+                    
+                    Section(header: Text("Instructions:").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)) {
+                        
+                        TextEditor(text: $instructions)
+                            .frame(minHeight: 150)
+                            .listRowBackground(ThemeColors.background)
+                    }.listRowBackground(ThemeColors.background)
+                    
+                    Section (header: Text("Estimated time (minutes):").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)){
+                        HStack {
+                            TextField("time", text: $minutes)
+                        }
+                    }.listRowBackground(ThemeColors.background)
+                    
+                    Section{
+                        PhotosPicker(selection: $selectedPhoto, matching: .images) {
+                            Label("Select Image", systemImage: "photo")
+                                .foregroundColor(ThemeColors.primary)
+                        }
+                    }.listRowBackground(ThemeColors.background).onChange(of: selectedPhoto) { oldValue, newValue in
+                        guard let newItem = newValue else { return }
+                        Task {
+                            if let data = try? await newItem.loadTransferable(type: Data.self),
+                               let uiImage = UIImage(data: data){
+                                selectedImage = uiImage
+                                do {
+                                    uploadedImageURL = try await uploadImage(uiImage)
+                                    print("✅ Uploaded to: \(uploadedImageURL ?? "")")
+                                } catch {
+                                    print("❌ Upload failed: \(error)")
+                                }
+                            }
+                        }
+                        
                     }
                     
-                }
-
-                
-                Section {
-                    Button("Submit Recipe") {
-                        Task {
-                            do {
-                                try await submitRecipe()
-                            } catch {
-                                print("❌ Failed to submit recipe: \(error)")
+                    
+                    Section {
+                        Button("Submit Recipe") {
+                            Task {
+                                do {
+                                    try await submitRecipe()
+                                } catch {
+                                    print("❌ Failed to submit recipe: \(error)")
+                                }
                             }
-                        }
-                    }.font(RecipeFonts.button)
-                }.disabled(disableForm)
-            }
+                        }.listRowBackground(ThemeColors.background).font(RecipeFonts.button)
+                    }.disabled(disableForm)
+                }.background(.yellow)
+            }}
         }
-        .navigationTitle("Add Recipe")
-        }
+    
     }
     
     
