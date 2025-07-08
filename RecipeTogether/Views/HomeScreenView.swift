@@ -54,7 +54,7 @@ struct ContentView: View {
     }
     
     func loadData() async {
-        guard let url = URL(string: "http://127.0.0.1:8000/recipes") else {
+        guard let url = URL(string: ApiConfig.recipeEndpint) else {
             print( "Invalid URL")
             return
         }

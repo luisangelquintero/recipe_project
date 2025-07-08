@@ -110,7 +110,7 @@ struct AddRecipeView: View {
     
     
     func uploadImage(_ image: UIImage) async throws -> String {
-        guard let url = URL(string: "http://localhost:8000/upload-image") else {
+        guard let url = URL(string: ApiConfig.uploadImageEndpoint) else {
             throw URLError(.badURL)
         }
         
@@ -153,7 +153,7 @@ struct AddRecipeView: View {
     }
     
     func submitRecipe() async throws {
-        guard let url = URL(string: "http://localhost:8000/recipes") else {
+        guard let url = URL(string: ApiConfig.recipeEndpint) else {
             print("Invalid URL")
             return
         }
