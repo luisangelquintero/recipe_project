@@ -7,12 +7,16 @@
 import Foundation
 
 struct Recipe: Hashable, Codable, Identifiable {
-    var id: String
-    var title: String
-    var difficulty: String
-    var ingredients: String
-    var minutes: Int
-    var instructions: String
+    let id: String
+    let title: String
+    let difficulty: String
+    let ingredients: String
+    let minutes: Int
+    let instructions: String
+    let imagePath : String
+    let timestamp: String
+    
+    
     
     var numberOfIngredients: Int {
         return 2    }

@@ -24,171 +24,99 @@ struct AddRecipeView: View {
     
     var disableForm: Bool {
         let fieldsValidation = title.count < 5 || ingredients.count < 10 || instructions.count < 15 || difficulty.isEmpty
-        let timeValidation = minutes.isEmpty || Int(minutes) == nil        
+        let timeValidation = minutes.isEmpty || Int(minutes) == nil
         return fieldsValidation || timeValidation
     }
     
     var body: some View {
-
-            NavigationStack {
+        
+        NavigationStack {
+            
+            ZStack {
+                ThemeColors.background.ignoresSafeArea()
                 
-                ZStack {
-                    ThemeColors.background.ignoresSafeArea()
-                    
-                    VStack {
-                        Text("Add a new recipe")
-                            .font(RecipeFonts.title)
-                            .foregroundColor(ThemeColors.textPrimary)
-                Form {
-                    
-                    Section(header: Text("Recipe Info:").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)) {
+                VStack {
+                    Text("Add a new recipe")
+                        .font(RecipeFonts.title)
+                        .foregroundColor(ThemeColors.textPrimary)
+                    Form {
                         
-                        TextField("Title", text: $title)
-                            .font(RecipeFonts.body)
-                        
-                        TextField("Ingredients", text: $ingredients).font(RecipeFonts.body)
-                        
-                        Picker("Difficulty", selection: $difficulty) {
-                            ForEach(difficultyOptions, id: \.self) {
-                                Text($0).font(RecipeFonts.body)
-                            }
-                        }
-                    }.listRowBackground(ThemeColors.background)
-                    
-                    Section(header: Text("Instructions:").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)) {
-                        
-                        TextEditor(text: $instructions)
-                            .frame(minHeight: 150)
-                            .listRowBackground(ThemeColors.background)
-                    }.listRowBackground(ThemeColors.background)
-                    
-                    Section (header: Text("Estimated time (minutes):").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)){
-                        HStack {
-                            TextField("time", text: $minutes)
-                        }
-                    }.listRowBackground(ThemeColors.background)
-                    
-                    Section{
-                        PhotosPicker(selection: $selectedPhoto, matching: .images) {
-                            Label("Select Image", systemImage: "photo")
-                                .foregroundColor(ThemeColors.primary)
-                        }
-                    }.listRowBackground(ThemeColors.background).onChange(of: selectedPhoto) { oldValue, newValue in
-                        guard let newItem = newValue else { return }
-                        Task {
-                            if let data = try? await newItem.loadTransferable(type: Data.self),
-                               let uiImage = UIImage(data: data){
-                                selectedImage = uiImage
-                                do {
-                                    uploadedImageURL = try await uploadImage(uiImage)
-                                    print("✅ Uploaded to: \(uploadedImageURL ?? "")")
-                                } catch {
-                                    print("❌ Upload failed: \(error)")
+                        Section(header: Text("Recipe Info:").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)) {
+                            
+                            TextField("Title", text: $title)
+                                .font(RecipeFonts.body)
+                            
+                            TextField("Ingredients", text: $ingredients).font(RecipeFonts.body)
+                            
+                            Picker("Difficulty", selection: $difficulty) {
+                                ForEach(difficultyOptions, id: \.self) {
+                                    Text($0).font(RecipeFonts.body)
                                 }
                             }
-                        }
+                        }.listRowBackground(ThemeColors.background)
                         
-                    }
-                    
-                    
-                    Section {
-                        Button("Submit Recipe") {
+                        Section(header: Text("Instructions:").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)) {
+                            
+                            TextEditor(text: $instructions)
+                                .frame(minHeight: 150)
+                                .listRowBackground(ThemeColors.background)
+                        }.listRowBackground(ThemeColors.background)
+                        
+                        Section (header: Text("Estimated time (minutes):").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)){
+                            HStack {
+                                TextField("time", text: $minutes)
+                            }
+                        }.listRowBackground(ThemeColors.background)
+                        
+                        Section{
+                            PhotosPicker(selection: $selectedPhoto, matching: .images) {
+                                Label("Select Image", systemImage: "photo")
+                                    .foregroundColor(ThemeColors.primary)
+                            }
+                        }.listRowBackground(ThemeColors.background).onChange(of: selectedPhoto) { oldValue, newValue in
+                            guard let newItem = newValue else { return }
                             Task {
-                                do {
-                                    try await submitRecipe()
-                                } catch {
-                                    print("❌ Failed to submit recipe: \(error)")
+                                if let data = try? await newItem.loadTransferable(type: Data.self),
+                                   let uiImage = UIImage(data: data){
+                                    selectedImage = uiImage
+                                    do {
+                                        uploadedImageURL = try await RecipeService.uploadImage(uiImage, title: title)
+                                        print("✅ Uploaded to: \(uploadedImageURL ?? "")")
+                                    } catch {
+                                        print("❌ Upload failed: \(error)")
+                                    }
                                 }
                             }
-                        }.listRowBackground(ThemeColors.background).font(RecipeFonts.button)
-                    }.disabled(disableForm)
-                }.background(.yellow)
-            }}
+                            
+                        }
+                        
+                        
+                        Section {
+                            Button("Submit Recipe") {
+                                Task {
+                                    do {
+                                        try await RecipeService.submitRecipe(Recipe(
+                                            id: UUID().uuidString,
+                                            title: title,
+                                            difficulty: difficulty,
+                                            ingredients: ingredients,
+                                            minutes: Int(minutes) ?? 0,
+                                            instructions: instructions,
+                                            imagePath: uploadedImageURL ?? "",
+                                            timestamp: ISO8601DateFormatter().string(from: Date())
+                                        ))
+                                    } catch {
+                                        print("❌ Failed to submit recipe: \(error)")
+                                    }
+                                }
+                            }.listRowBackground(ThemeColors.background).font(RecipeFonts.button)
+                        }.disabled(disableForm)
+                    }.background(.yellow)
+                }}
         }
-    
+        
     }
     
-    
-    func uploadImage(_ image: UIImage) async throws -> String {
-        guard let url = URL(string: ApiConfig.uploadImageEndpoint) else {
-            throw URLError(.badURL)
-        }
-        
-        let boundary = UUID().uuidString
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
-        let imageData = image.jpegData(compressionQuality: 0.8) ?? Data()
-        var body = Data()
-        
-
-        // Append file
-        body.append("--\(boundary)\r\n")
-        body.append("Content-Disposition: form-data; name=\"file\"; filename=\"image.jpg\"\r\n")
-        body.append("Content-Type: image/jpeg\r\n\r\n")
-        body.append(imageData)
-        body.append("\r\n")
-
-        // Append recipe title
-        body.append("--\(boundary)\r\n")
-        body.append("Content-Disposition: form-data; name=\"recipe_title\"\r\n\r\n")
-        body.append(title)
-        body.append("\r\n")
-
-        body.append("--\(boundary)--\r\n")
-        
-        request.httpBody = body
-        
-        let (data, response) = try await URLSession.shared.data(for: request)
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw URLError(.badServerResponse)
-        }
-        if let decoded = try? JSONDecoder().decode([String: String].self, from: data),
-           let imageUrl = decoded["url"]{
-            return imageUrl
-        } else {
-            throw URLError(.cannotParseResponse)
-        }
-    }
-    
-    func submitRecipe() async throws {
-        guard let url = URL(string: ApiConfig.recipeEndpint) else {
-            print("Invalid URL")
-            return
-        }
-        
-        let recipeData: [String: Any] = [
-            "id": UUID().uuidString,
-            "title": title,
-            "difficulty": difficulty,
-            "ingredients": ingredients,
-            "minutes": Int(minutes) ?? 0,
-            "instructions": instructions,
-            "imagePath": uploadedImageURL ?? "",
-            "timestamp": ISO8601DateFormatter().string(from: Date())
-        ]
-        
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: recipeData) else {
-            print("Error converting to JSON data")
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonData
-
-        let (data, response) = try await URLSession.shared.data(for: request)
-
-        if let httpResponse = response as? HTTPURLResponse {
-            print("✅ Status: \(httpResponse.statusCode)")
-        }
-
-        if let responseStr = String(data: data, encoding: .utf8) {
-            print("📦 Response: \(responseStr), jsonData: \(recipeData)")
-        }
-    }
 }
 
 #Preview {
