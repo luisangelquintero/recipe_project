@@ -9,24 +9,11 @@ import SwiftUI
 import PhotosUI
 
 struct AddRecipeView: View {
-    
-    @State private var title = ""
-    @State private var ingredients = ""
-    @State private var instructions = ""
-    @State private var difficulty = ""
-    @State private var minutes = ""
+    @State private var addRecipe = AddRecipeModel()
     
     @State private var selectedPhoto: PhotosPickerItem? = nil
     @State private var selectedImage: UIImage? = nil
-    @State private var uploadedImageURL: String? = nil
-    
-    let difficultyOptions: [String] = ["Easy", "Medium", "Hard"]
-    
-    var disableForm: Bool {
-        let fieldsValidation = title.count < 5 || ingredients.count < 10 || instructions.count < 15 || difficulty.isEmpty
-        let timeValidation = minutes.isEmpty || Int(minutes) == nil
-        return fieldsValidation || timeValidation
-    }
+        
     
     var body: some View {
         
@@ -43,13 +30,12 @@ struct AddRecipeView: View {
                         
                         Section(header: Text("Recipe Info:").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)) {
                             
-                            TextField("Title", text: $title)
-                                .font(RecipeFonts.body)
+                            TextField("Title", text: $addRecipe.title).font(RecipeFonts.body)
                             
-                            TextField("Ingredients", text: $ingredients).font(RecipeFonts.body)
+                            TextField("Ingredients", text: $addRecipe.ingredients).font(RecipeFonts.body)
                             
-                            Picker("Difficulty", selection: $difficulty) {
-                                ForEach(difficultyOptions, id: \.self) {
+                            Picker("Difficulty", selection: $addRecipe.difficulty) {
+                                ForEach(AddRecipeModel.difficultyOptions, id: \.self) {
                                     Text($0).font(RecipeFonts.body)
                                 }
                             }
@@ -57,31 +43,30 @@ struct AddRecipeView: View {
                         
                         Section(header: Text("Instructions:").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)) {
                             
-                            TextEditor(text: $instructions)
+                            TextEditor(text: $addRecipe.instructions)
                                 .frame(minHeight: 150)
                                 .listRowBackground(ThemeColors.background)
                         }.listRowBackground(ThemeColors.background)
                         
                         Section (header: Text("Estimated time (minutes):").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)){
                             HStack {
-                                TextField("time", text: $minutes)
+                                TextField("time", text: $addRecipe.minutes)
                             }
                         }.listRowBackground(ThemeColors.background)
                         
                         Section{
                             PhotosPicker(selection: $selectedPhoto, matching: .images) {
-                                Label("Select Image", systemImage: "photo")
-                                    .foregroundColor(ThemeColors.primary)
+                                Label("Select Image", systemImage: "photo").foregroundColor(ThemeColors.primary)
                             }
-                        }.listRowBackground(ThemeColors.background).onChange(of: selectedPhoto) { oldValue, newValue in
+                        }.listRowBackground(ThemeColors.background).onChange(of: selectedPhoto) { _ , newValue in
                             guard let newItem = newValue else { return }
                             Task {
                                 if let data = try? await newItem.loadTransferable(type: Data.self),
                                    let uiImage = UIImage(data: data){
                                     selectedImage = uiImage
                                     do {
-                                        uploadedImageURL = try await RecipeService.uploadImage(uiImage, title: title)
-                                        print("✅ Uploaded to: \(uploadedImageURL ?? "")")
+                                        addRecipe.uploadedImageURL = try await RecipeService.uploadImage(uiImage, title: addRecipe.title)
+                                        print("✅ Uploaded to: \(addRecipe.uploadedImageURL)")
                                     } catch {
                                         print("❌ Upload failed: \(error)")
                                     }
@@ -90,27 +75,22 @@ struct AddRecipeView: View {
                             
                         }
                         
-                        
                         Section {
                             Button("Submit Recipe") {
                                 Task {
+                                    guard let recipe = addRecipe.recipe else {
+                                        print("⚠️ Recipe is invalid — missing fields or wrong values.")
+                                        return
+                                    }
+                                    
                                     do {
-                                        try await RecipeService.submitRecipe(Recipe(
-                                            id: UUID().uuidString,
-                                            title: title,
-                                            difficulty: difficulty,
-                                            ingredients: ingredients,
-                                            minutes: Int(minutes) ?? 0,
-                                            instructions: instructions,
-                                            imagePath: uploadedImageURL ?? "",
-                                            timestamp: ISO8601DateFormatter().string(from: Date())
-                                        ))
+                                        try await RecipeService.submitRecipe(recipe)
                                     } catch {
                                         print("❌ Failed to submit recipe: \(error)")
                                     }
                                 }
                             }.listRowBackground(ThemeColors.background).font(RecipeFonts.button)
-                        }.disabled(disableForm)
+                        }.disabled(addRecipe.isFormDisabled)
                     }.background(.yellow)
                 }}
         }

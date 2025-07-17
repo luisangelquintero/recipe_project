@@ -5,6 +5,8 @@
         "difficulty": "Medium",
         "ingredients": "TEST INGEDIENTS",
         "minutes": 2,
-        "instructions": "String"
+        "instructions": "String",
+        "imagePath": "/images/image.jpg",
+        "timestamp": "2025-07-10T00:40:14Z"
     }
 ]

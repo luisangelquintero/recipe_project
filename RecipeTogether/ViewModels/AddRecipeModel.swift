@@ -10,12 +10,14 @@ import Foundation
 class AddRecipeModel {
     static let difficultyOptions = ["Easy", "Medium", "Hard"]
     
-    var difficulty = 1
+    var difficulty = ""
     
     var title = ""
     var ingredients = ""
     var instructions = ""
     var minutes = ""
+    
+    var uploadedImageURL = ""
     
     var isFormDisabled: Bool {
         title.count < 5 &&
@@ -25,4 +27,17 @@ class AddRecipeModel {
         Int(minutes) == nil        
     }
     
+    var recipe: Recipe? {
+        guard !isFormDisabled else { return nil }
+        return Recipe(
+            id: UUID().uuidString,
+            title: title,
+            difficulty: difficulty,
+            ingredients: ingredients,
+            minutes: Int(minutes) ?? 0,
+            instructions: instructions,
+            imagePath: uploadedImageURL,
+            timestamp: ISO8601DateFormatter().string(from: Date())
+        )
+    }
 }
