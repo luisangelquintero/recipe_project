@@ -20,11 +20,32 @@ class AddRecipeModel {
     var uploadedImageURL = ""
     
     var isFormDisabled: Bool {
-        title.count < 5 &&
-        ingredients.count < 10 &&
-        instructions.count < 15 &&
-        minutes.isEmpty &&
-        Int(minutes) == nil        
+        print("------------")
+        print("title.count\(title.count)")
+        print("title.count > 5 \(title.count > 5)")
+        
+        print("ingredients.count\(ingredients.count)")
+        print("ingredients.count > 10 \(ingredients.count > 10)")
+        
+        print(" instructions.count\( instructions.count)")
+        print(" instructions.count > 15\( instructions.count > 15)")
+        
+        print("minutes.count\(minutes.count)")
+        print(" minutes.count > 0\(  minutes.count > 0)")
+        print(" Int(minutes) != nil\( Int(minutes) != nil)")
+        
+        print("!difficulty.isEmpty\(!difficulty.isEmpty)")
+        print("!uploadedImageURL.isEmpty\(!uploadedImageURL.isEmpty)")
+        
+        print("------------")
+
+        return title.count < 5 ||
+        ingredients.count < 10 ||
+        instructions.count < 15 ||
+        minutes.count < 0 ||
+        Int(minutes) == nil ||
+        difficulty.isEmpty ||
+        uploadedImageURL.isEmpty
     }
     
     var recipe: Recipe? {
