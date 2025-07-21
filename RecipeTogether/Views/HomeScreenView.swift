@@ -38,8 +38,14 @@ struct ContentView: View {
                 .toolbar {
                     Button(action: {}) {
                         HStack {
-                            Text("Add Recipe").font(RecipeFonts.button)
-                            Image(systemName: "plus")
+                            NavigationLink {
+                                AddRecipeView()
+                                
+                            } label: {
+                                Text("Add Recipe").font(RecipeFonts.button)
+                                Image(systemName: "plus")
+                            }
+
                         }
                     }
                     .foregroundColor(ThemeColors.primary)
