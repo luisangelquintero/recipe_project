@@ -11,7 +11,7 @@ struct RecipeDetailView: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: "http://127.0.0.1:8000/images/hello_49bff9076ef14dd3944c91ef34e8bfa2.jpg")){ phase in
+            AsyncImage(url: URL(string: "http://127.0.0.1:8000\(recipe.imagePath)")){ phase in
                 if let image = phase.image {
                     image
                         .resizable()
@@ -27,24 +27,30 @@ struct RecipeDetailView: View {
                 .containerRelativeFrame(.vertical) { size, axis in
                     size * 0.35
                 }
-            Text(recipe.title).font(RecipeFonts.title)
+            Spacer()
+            Text(recipe.title).font(RecipeFonts.title).foregroundStyle(ThemeColors.textPrimary)
+            Spacer()
             HStack {
                 
                 Text("Time: \(recipe.minutes)").font(RecipeFonts.body)
+                    .foregroundStyle(ThemeColors.TextSecondary)
                 Spacer()
                 Text("Difficulty: \(recipe.difficulty)").font(RecipeFonts.body)
+                    .foregroundStyle(ThemeColors.difficultyHard)
                 
             }.padding([.horizontal, .bottom], RecipeSpacing.xs).font(.subheadline)
             Spacer()
-            VStack {
+            VStack(alignment:.leading){
                 Text("Ingedients:").font(RecipeFonts.section)
                 Text(recipe.ingredients).font(RecipeFonts.body)
                 
-            }
-            VStack{
+            }.frame(maxWidth: .infinity, alignment: .leading)
+            Spacer()
+            VStack(alignment:.leading){
                 Text("Instructions:").font(RecipeFonts.section)
                 Text(recipe.instructions).font(RecipeFonts.body)
             }
+            Spacer()
             
         }.padding(RecipeSpacing.md)
         
