@@ -11,6 +11,7 @@ struct RecipeDetailView: View {
     
     var body: some View {
         VStack {
+            // ImageSection
             AsyncImage(url: URL(string: "http://127.0.0.1:8000\(recipe.imagePath)")){ phase in
                 if let image = phase.image {
                     image
@@ -27,6 +28,7 @@ struct RecipeDetailView: View {
                 .containerRelativeFrame(.vertical) { size, axis in
                     size * 0.35
                 }
+            // Header section
             Spacer()
             Text(recipe.title).font(RecipeFonts.title).foregroundStyle(ThemeColors.textPrimary)
             Spacer()
@@ -39,18 +41,37 @@ struct RecipeDetailView: View {
                     .foregroundStyle(ThemeColors.difficultyHard)
                 
             }.padding([.horizontal, .bottom], RecipeSpacing.xs).font(.subheadline)
+            
+            // Ingredients
+            
+            
             Spacer()
+            
             VStack(alignment:.leading){
                 Text("Ingedients:").font(RecipeFonts.section)
                 Text(recipe.ingredients).font(RecipeFonts.body)
                 
             }.frame(maxWidth: .infinity, alignment: .leading)
+                .padding(RecipeSpacing.sm)
+                .background(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .fill(ThemeColors.secondary)   // or ThemeColors.card
+                )
+            
+            // Instructions
             Spacer()
+            
             VStack(alignment:.leading){
                 Text("Instructions:").font(RecipeFonts.section)
                 Text(recipe.instructions).font(RecipeFonts.body)
-            }
+            }.frame(maxWidth: .infinity, alignment: .leading)
+                .padding(RecipeSpacing.sm)
+                .background(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .fill(ThemeColors.secondary)   // or ThemeColors.card
+                )
             Spacer()
+            
             
         }.padding(RecipeSpacing.md)
         

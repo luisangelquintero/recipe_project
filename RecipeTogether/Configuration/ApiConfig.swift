@@ -16,6 +16,6 @@ struct ApiConfig {
     #endif
     
     static let imageBaseUrl = "\(baseUrl)/images/"
-    static let recipeEndpint = "\(baseUrl)/recipe"
+    static let recipeEndpint = "\(baseUrl)/recipes"
     static let uploadImageEndpoint = "\(baseUrl)/upload-image"
 }

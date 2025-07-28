@@ -1,12 +1,32 @@
 [
     {
-        "id": "01",
-        "title": "Avocado Toast",
+        "id": "9ab980c1-2a41-4e1e-a0d9-44e8e7f95c2e",
+        "title": "Spaghetti Carbonara",
         "difficulty": "Medium",
-        "ingredients": "TEST INGEDIENTS",
-        "minutes": 2,
-        "instructions": "String",
-        "imagePath": "/images/image.jpg",
-        "timestamp": "2025-07-10T00:40:14Z"
+        "ingredients": "• 200 g spaghetti\n• 100 g pancetta\n• 2 eggs\n• 40 g grated pecorino\n• 1 clove garlic\n• Salt & pepper",
+        "minutes": 25,
+        "instructions": "1. Cook spaghetti in salted water until al dente.\n2. Sauté pancetta with garlic; discard garlic.\n3. Whisk eggs and pecorino, season with pepper.\n4. Drain pasta (reserve ¼ cup water) and toss with pancetta.\n5. Off-heat, fold in egg mixture, loosening with pasta water.\n6. Serve immediately with extra cheese.",
+        "imagePath": "/images/spaghetti-carbonara_f686aa7b821447598f68fc9ef5b21591.jpg",
+        "timestamp": "2025-07-21T12:34:00Z"
+    },
+    {
+        "id": "450b6e18-b396-46b5-b968-9f6eca7b624a",
+        "title": "Avocado Toast with Poached Egg",
+        "difficulty": "Easy",
+        "ingredients": "• 2 slices sourdough\n• 1 ripe avocado\n• 1 egg\n• 1 tsp lemon juice\n• Chili flakes, salt, pepper",
+        "minutes": 10,
+        "instructions": "1. Toast bread until crisp.\n2. Mash avocado with lemon, salt, and pepper.\n3. Poach egg for about 3 min (runny yolk).\n4. Spread avocado on toast, top with egg.\n5. Finish with chili flakes.",
+        "imagePath": "/images/avocado_toast_with_poached_egg_ae4266d7fad14d04a5849107ecc414c5.jpg",
+        "timestamp": "2025-07-20T08:15:30Z"
+    },
+    {
+        "id": "6d3c9631-f40a-43fa-94e7-ecab2f0e7e68",
+        "title": "Dark-Chocolate Brownies",
+        "difficulty": "Hard",
+        "ingredients": "• 200 g dark chocolate (70%)\n• 150 g unsalted butter\n• 3 large eggs\n• 250 g sugar\n• 100 g plain flour\n• 30 g cocoa powder\n• 1 tsp vanilla extract\n• Pinch of sea salt",
+        "minutes": 50,
+        "instructions": "1. Preheat oven to 175 °C / 350 °F. Line an 8-inch pan.\n2. Melt chocolate and butter together; cool slightly.\n3. Whisk eggs, sugar, and vanilla until pale.\n4. Fold in chocolate mixture, then sifted flour, cocoa, and salt.\n5. Pour into pan; bake 28–30 min (fudgy center).\n6. Cool completely before cutting.",
+        "imagePath": "/images/dark-chocolate_brownies_0b1709a8c241492aa7d0ed9fc2daafc7.jpg",
+        "timestamp": "2025-07-19T19:48:12Z"
     }
 ]
