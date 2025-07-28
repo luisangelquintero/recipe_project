@@ -13,7 +13,7 @@ struct RecipeRow: View {
         VStack(alignment: .leading){
             Text(recipe.title).font(RecipeFonts.section)
                 .foregroundStyle(ThemeColors.textPrimary)
-            Text(recipe.difficulty).font(RecipeFonts.body).foregroundStyle(ThemeColors.TextSecondary)
+            DifficultyTextFieldView(difficulty: recipe.difficulty)
             HStack{
                 Text("Time: \(recipe.minutes) minutes")
             }.font(RecipeFonts.caption).foregroundStyle(ThemeColors.TextSecondary)
@@ -22,5 +22,5 @@ struct RecipeRow: View {
 }
 
 #Preview {
-    RecipeRow(recipe: recipes[0]).padding(.all, 30)
+    RecipeRow(recipe: recipes[0])
 }

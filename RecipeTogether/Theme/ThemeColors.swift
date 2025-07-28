@@ -17,6 +17,19 @@ struct ThemeColors {
     static let secondary: Color = Color("SecondaryColor")
     static let textPrimary: Color = Color("TextPrimaryColor")
     static let TextSecondary: Color = Color("TextSecondaryColor")
+    
+    static func getDifficultyColor(_ difficulty: String) -> Color {
+        switch difficulty.lowercased() {
+        case "easy":
+            return self.difficultyEasy
+        case "medium":
+            return self.difficultyMedium
+        case "hard":
+            return self.difficultyHard
+        default:
+            return self.difficultyMedium
+        }
+    }
 }
     
 
