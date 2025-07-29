@@ -35,9 +35,7 @@ struct RecipeDetailView: View {
                 Spacer()
                 HStack {
                     
-                    Text("Time: \(recipe.minutes)").font(RecipeFonts.body)
-                        .foregroundStyle(ThemeColors.TextSecondary)
-                    
+                    TimeTextFieldView(time: recipe.minutes)
                     Spacer()
                     
                     DifficultyTextFieldView(difficulty: recipe.difficulty)

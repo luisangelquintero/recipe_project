@@ -14,9 +14,7 @@ struct RecipeRow: View {
             Text(recipe.title).font(RecipeFonts.section)
                 .foregroundStyle(ThemeColors.textPrimary)
             DifficultyTextFieldView(difficulty: recipe.difficulty)
-            HStack{
-                Text("Time: \(recipe.minutes) minutes")
-            }.font(RecipeFonts.caption).foregroundStyle(ThemeColors.TextSecondary)
+            TimeTextFieldView(time: recipe.minutes)
         }
     }
 }
