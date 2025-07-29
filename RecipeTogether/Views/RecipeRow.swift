@@ -11,7 +11,7 @@ struct RecipeRow: View {
     
     var body: some View {
         VStack(alignment: .leading){
-            Text(recipe.title).font(RecipeFonts.section)
+            Text(recipe.title).font(RecipeFonts.subtitle)
                 .foregroundStyle(ThemeColors.textPrimary)
             DifficultyTextFieldView(difficulty: recipe.difficulty)
             TimeTextFieldView(time: recipe.minutes)

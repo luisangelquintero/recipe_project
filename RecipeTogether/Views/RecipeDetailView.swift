@@ -44,7 +44,6 @@ struct RecipeDetailView: View {
                 
                 // Ingredients
                 
-                
                 Spacer()
                 
                 VStack(alignment:.leading){
@@ -59,8 +58,7 @@ struct RecipeDetailView: View {
                     )
                 
                 // Instructions
-                Spacer()
-                
+                Spacer()                
                 VStack(alignment:.leading){
                     Text("Instructions:").font(RecipeFonts.section)
                     Text(recipe.instructions).font(RecipeFonts.body)

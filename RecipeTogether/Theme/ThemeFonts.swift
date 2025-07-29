@@ -13,6 +13,11 @@ struct RecipeFonts {
         Font.system(.title, design: .rounded).weight(.bold)
     }
     
+    /// Used for screen titles like "Add Recipe"
+    static var subtitle: Font {
+        Font.system(.title2, design: .rounded).weight(.semibold)
+    }
+    
     /// Used for section headers like "Ingredients"
     static var section: Font {
         Font.system(.headline, design: .rounded).weight(.semibold)
