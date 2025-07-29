@@ -36,7 +36,6 @@ struct ContentView: View {
                     }
                 
                 .toolbar {
-                    Button(action: {}) {
                         HStack {
                             NavigationLink {
                                 AddRecipeView()
@@ -46,8 +45,7 @@ struct ContentView: View {
                                 Image(systemName: "plus")
                             }
 
-                        }
-                    }
+                        }                    
                     .foregroundColor(ThemeColors.primary)
                     .accessibilityLabel("Add Recipe")
                 }
