@@ -34,11 +34,16 @@ struct AddRecipeView: View {
                             
                             TextField("Ingredients", text: $addRecipe.ingredients).font(RecipeFonts.body)
                             
+
+                            
+                        }.listRowBackground(ThemeColors.background)
+                        
+                        Section(header:Text("Difficulty:").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)){
                             Picker("Difficulty", selection: $addRecipe.difficulty) {
                                 ForEach(AddRecipeModel.difficultyOptions, id: \.self) {
                                     Text($0).font(RecipeFonts.body)
                                 }
-                            }
+                            }.pickerStyle(.segmented)
                         }.listRowBackground(ThemeColors.background)
                         
                         Section(header: Text("Instructions:").font(RecipeFonts.section).foregroundColor(ThemeColors.TextSecondary)) {
