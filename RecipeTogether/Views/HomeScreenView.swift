@@ -18,17 +18,7 @@ struct ContentView: View {
                         .ignoresSafeArea()
                     VStack(spacing: 5){
                         Divider()
-                        HStack{
-                            Text("Hello,  Alex")
-                                .foregroundColor(ThemeColors.textPrimary)
-                                .font(RecipeFonts.title)
-                            Spacer()
-                            Image("ProfileImages")
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .frame(width: 100, height: 100)
-                        }
+                        HomeProfileView()
                         Divider()
                         VStack(alignment: .leading){
                             RecipeList(recipeList: results)
@@ -45,7 +35,7 @@ struct ContentView: View {
                                 Image(systemName: "plus")
                             }
 
-                        }                    
+                        }
                     .foregroundColor(ThemeColors.primary)
                     .accessibilityLabel("Add Recipe")
                 }
