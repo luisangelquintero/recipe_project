@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct TimeTextFieldView: View {
+struct TimeBadge: View {
     var time: Int
     var body: some View {
         Text("Time: \(time) minutes")
@@ -21,5 +21,5 @@ struct TimeTextFieldView: View {
 }
 
 #Preview {
-    TimeTextFieldView(time: recipes[0].minutes)
+    TimeBadge(time: recipes[0].minutes)
 }

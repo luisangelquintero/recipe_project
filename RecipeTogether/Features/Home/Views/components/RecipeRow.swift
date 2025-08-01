@@ -13,8 +13,8 @@ struct RecipeRow: View {
         VStack(alignment: .leading){
             Text(recipe.title).font(RecipeFonts.subtitle)
                 .foregroundStyle(ThemeColors.textPrimary)
-            DifficultyTextFieldView(difficulty: recipe.difficulty)
-            TimeTextFieldView(time: recipe.minutes)
+            DifficultyBadge(difficulty: recipe.difficulty)
+            TimeBadge(time: recipe.minutes)
         }
     }
 }

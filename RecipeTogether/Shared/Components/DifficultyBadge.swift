@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct DifficultyTextFieldView: View {
+struct DifficultyBadge: View {
     var difficulty: String
     var body: some View {
         Text("Difficulty: \(difficulty)")
@@ -21,5 +21,5 @@ struct DifficultyTextFieldView: View {
 }
 
 #Preview {
-    DifficultyTextFieldView(difficulty: recipes[0].difficulty)
+    DifficultyBadge(difficulty: recipes[0].difficulty)
 }

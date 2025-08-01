@@ -35,10 +35,10 @@ struct RecipeDetailView: View {
                 Spacer()
                 HStack {
                     
-                    TimeTextFieldView(time: recipe.minutes)
+                    TimeBadge(time: recipe.minutes)
                     Spacer()
                     
-                    DifficultyTextFieldView(difficulty: recipe.difficulty)
+                    DifficultyBadge(difficulty: recipe.difficulty)
                     
                 }.padding([.horizontal, .bottom], RecipeSpacing.xs).font(.subheadline)
                 
