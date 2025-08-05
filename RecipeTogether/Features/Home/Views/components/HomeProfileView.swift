@@ -26,8 +26,8 @@ struct HomeProfileView: View {
                         .foregroundColor(ThemeColors.textPrimary)
                         .font(RecipeFonts.title)
                     Spacer()
-                    Button("Login", systemImage: "person.circle.fill"){
-                        print("Login")
+                    Button("Sign In", systemImage: "person.circle.fill"){
+                        print("Sign In")
                     }.font(RecipeFonts.button)
                         .padding(RecipeSpacing.sm)
                         .background(ThemeColors.primary)
