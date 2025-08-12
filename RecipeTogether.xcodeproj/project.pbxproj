@@ -36,22 +36,9 @@
 		53125CD22DE5EA640005D981 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		534DCC302E423A3A00071F68 /* Exceptions for "RecipeTogether" folder in "RecipeTogether" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Features/login/Services/AuthError.swift,
-			);
-			target = 53125C8A2DD615E70005D981 /* RecipeTogether */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		53125C8D2DD615E70005D981 /* RecipeTogether */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				534DCC302E423A3A00071F68 /* Exceptions for "RecipeTogether" folder in "RecipeTogether" target */,
-			);
 			path = RecipeTogether;
 			sourceTree = "<group>";
 		};
