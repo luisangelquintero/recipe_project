@@ -6,6 +6,7 @@
 //
 import Foundation
 
+@MainActor
 @Observable
 class LoginVM  {
     var email: String = ""
@@ -16,8 +17,8 @@ class LoginVM  {
     
     
     var isValid: Bool {
-        return  email.count > 10 && password.count >= 6
-        && email.contains("@") && email.contains(".")
+        let e = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        return e.contains("@") && e.count >= 5 && password.count >= 6
     }
     
     func login() async throws {
@@ -28,7 +29,10 @@ class LoginVM  {
         
         isLoading = true
         
-        defer { isLoading = false}
+        defer {
+            isLoading = false
+            password = ""     // optional: clear sensitive input
+        }
         
         do {
             let user = LoginRequest(email: email, password: password)
@@ -38,6 +42,7 @@ class LoginVM  {
             // TODO: persist token (Keychain) and route to Home
         } catch {
             errorMessage = error.localizedDescription
+            // throw error   // if you want callers to handle it too
         }
     }
     
