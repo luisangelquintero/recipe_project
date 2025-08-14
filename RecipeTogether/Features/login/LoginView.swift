@@ -10,39 +10,31 @@ struct LoginView: View {
     @State private var loginData = LoginVM()
     @State private var showPassword = false
     // @FocusState private var focusField: Field?
-    
+
     var body: some View {
-        VStack(spacing: RecipeSpacing.lg){
+        VStack(spacing: RecipeSpacing.lg) {
             Text("Hey, Welcome Back!")
                 .foregroundStyle(ThemeColors.primary)
                 .font(RecipeFonts.title)
-            
-            VStack(spacing: RecipeSpacing.md){
+
+            VStack(spacing: RecipeSpacing.md) {
                 TextField("Email:", text: $loginData.email)
                     .textInputAutocapitalization(.never)
                     .keyboardType(.emailAddress)
                     .textContentType(.username)
                     .autocorrectionDisabled()
                     .padding(RecipeSpacing.md)
-                    .background(RoundedRectangle(cornerRadius: 4).fill(ThemeColors.secondary))
-                
-                HStack{
+                    .background(
+                        RoundedRectangle(cornerRadius: 4).fill(
+                            ThemeColors.secondary
+                        )
+                    )
+
+                HStack {
                     if showPassword {
                         TextField("Password:", text: $loginData.password)
-                            .textInputAutocapitalization(.never)
-                            .keyboardType(.default)
-                            .textContentType(.password)
-                            .autocorrectionDisabled()
-                            .padding(RecipeSpacing.md)
-                            .background(RoundedRectangle(cornerRadius: 4).fill(ThemeColors.secondary))
                     } else {
                         SecureField("Password:", text: $loginData.password)
-                            .textInputAutocapitalization(.never)
-                            .keyboardType(.default)
-                            .textContentType(.password)
-                            .autocorrectionDisabled()
-                            .padding(RecipeSpacing.md)
-                            .background(RoundedRectangle(cornerRadius: 4).fill(ThemeColors.secondary))
                     }
                     Button {
                         showPassword.toggle()
@@ -51,15 +43,61 @@ struct LoginView: View {
                     }
                     .tint(ThemeColors.primary)
                 }
-                
+                .textContentType(.password)
+                .padding(RecipeSpacing.md)
+                .background(
+                    RoundedRectangle(cornerRadius: 4).fill(
+                        ThemeColors.secondary
+                    )
+                )
+                .submitLabel(.go)
+                .onSubmit {
+                    Task {
+                        do {
+                            try await loginData.login()
+                        } catch {
+                            print("Login failed: \(error)")
+                        }
+                    }
+                }
+
+            }
+            Button {
+                Task {
+                    do {
+                        loginData.isLoading = true
+                        try await loginData.login()
+                    } catch {
+                        print("Login failed: \(error)")
+                    }
+                }
+            } label: {
+                HStack {
+                    if loginData.isLoading {
+                        ProgressView().controlSize(.regular)
+                    }
+                    Text("Login")
+                        .foregroundStyle(ThemeColors.primary)
+                }
+                .frame(maxWidth: .infinity)
+
+            }
+            .buttonStyle(.borderedProminent)
+            .disabled(!loginData.isValid || loginData.isLoading)
+            if let errorMessage = loginData.errorMessage {
+                Text(errorMessage)
+                    .font(.footnote)
+                    .foregroundColor(.red)
             }
         }
         .padding(20)
+        .navigationTitle("Login")
+        .toolbarTitleDisplayMode(.inline)
         .background(ThemeColors.background.ignoresSafeArea())
-            
+
     }
 }
 
 #Preview {
-    LoginView()    
+    LoginView()
 }

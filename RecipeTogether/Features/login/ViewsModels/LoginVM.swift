@@ -31,7 +31,7 @@ class LoginVM  {
         
         defer {
             isLoading = false
-            password = ""     // optional: clear sensitive input
+            password = ""     // Clear sensitive input
         }
         
         do {
@@ -42,7 +42,7 @@ class LoginVM  {
             // TODO: persist token (Keychain) and route to Home
         } catch {
             errorMessage = error.localizedDescription
-            // throw error   // if you want callers to handle it too
+            throw error   // if you want callers to handle it too
         }
     }
     
