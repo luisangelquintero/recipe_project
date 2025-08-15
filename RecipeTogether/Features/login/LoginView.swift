@@ -13,24 +13,41 @@ struct LoginView: View {
 
     var body: some View {
         VStack(spacing: RecipeSpacing.lg) {
+            Spacer()
             Text("Hey, Welcome Back!")
                 .foregroundStyle(ThemeColors.primary)
                 .font(RecipeFonts.title)
-
             VStack(spacing: RecipeSpacing.md) {
-                TextField("Email:", text: $loginData.email)
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.emailAddress)
-                    .textContentType(.username)
-                    .autocorrectionDisabled()
+                
+                VStack(alignment: .leading){
+
+                    HStack{
+                        Image(systemName: "envelope.fill")
+                            .symbolEffect(.wiggle.byLayer, options: .repeat(.periodic(delay: 1.0)))
+                            .foregroundStyle(ThemeColors.primary)
+                        
+                        TextField("Email", text: $loginData.email)
+                            .foregroundStyle(ThemeColors.primary)
+                            .textInputAutocapitalization(.never)
+                            .keyboardType(.emailAddress)
+                            .textContentType(.username)
+                            .autocorrectionDisabled()
+                    }
                     .padding(RecipeSpacing.md)
                     .background(
-                        RoundedRectangle(cornerRadius: 4).fill(
+                        RoundedRectangle(cornerRadius: 12).fill(
                             ThemeColors.secondary
                         )
                     )
+                }
+
 
                 HStack {
+                    Image(systemName: "lock.fill")
+                        .symbolEffect(.wiggle.byLayer, options: .repeat(.periodic(delay: 1.0)))
+                        .foregroundStyle(ThemeColors.primary)
+                    
+                   
                     if showPassword {
                         TextField("Password:", text: $loginData.password)
                     } else {
@@ -46,7 +63,7 @@ struct LoginView: View {
                 .textContentType(.password)
                 .padding(RecipeSpacing.md)
                 .background(
-                    RoundedRectangle(cornerRadius: 4).fill(
+                    RoundedRectangle(cornerRadius: 12).fill(
                         ThemeColors.secondary
                     )
                 )
@@ -89,6 +106,27 @@ struct LoginView: View {
                     .font(.footnote)
                     .foregroundColor(.red)
             }
+            Spacer()
+            
+            Button {
+                Task {
+                    do {
+                        try await loginData.login()
+                    } catch {
+                        print("Login failed: \(error)")
+                    }
+                }
+            } label: {
+                HStack {
+
+                    Text("Create Account")
+                        .foregroundStyle(ThemeColors.primary)
+                }
+                .frame(maxWidth: .infinity)
+                
+            }
+            
+            
         }
         .padding(20)
         .navigationTitle("Login")
